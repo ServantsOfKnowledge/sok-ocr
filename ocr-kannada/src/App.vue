@@ -2,7 +2,7 @@
   <header>
     <div class="header-content">
       <div class="logo-section">
-        <img src="/img/sok-logo.jpg" alt="ServantsOfKnowledge" class="header-logo">
+        <img :src="BASE_URL + 'img/sok-logo.jpg'" alt="ServantsOfKnowledge" class="header-logo">
         <div class="title-section">
           <h1>OCR | Optical Character Recognition</h1>
           <span class="subtitle">Optical Character Recognition</span>
@@ -77,7 +77,7 @@
     </div>
     <div class="text-container">
       <editor
-        tinymce-script-src="/js/tinymce/tinymce.min.js"
+        :tinymce-script-src="BASE_URL + 'js/tinymce/tinymce.min.js'"
         v-model="text"
         :init="editorConfig"
         @input="onTextChange"
@@ -418,6 +418,8 @@ const languageMap: Record<string, Record<string, string>> = {
 const engineInfo: Record<string, string> = {
   tesseract: 'Tesseract.js - Browser-based, ~4MB download, 100+ languages'
 };
+
+const BASE_URL = import.meta.env.BASE_URL;
 
 const languageOptions = [
   { code: 'asm', name: 'Assamese' },
@@ -1003,7 +1005,7 @@ export default defineComponent({
       state.originalText = state.text;
     };
 
-    return { ...toRefs(state), doOCR, doOCRAllPages, exportTxt, exportDocx, exportHocr, exportHtmlLayout, exportTsv, viewOcrFormat, handlePdfLoaded, handleFileLoaded, handlePageChanged, switchToPageView, switchToCombinedView, extractUniqueWords, copyUniqueWords, onTextChange, setOriginalText, viewTable, copyTableContent, languageOptions };
+    return { ...toRefs(state), doOCR, doOCRAllPages, exportTxt, exportDocx, exportHocr, exportHtmlLayout, exportTsv, viewOcrFormat, handlePdfLoaded, handleFileLoaded, handlePageChanged, switchToPageView, switchToCombinedView, extractUniqueWords, copyUniqueWords, onTextChange, setOriginalText, viewTable, copyTableContent, languageOptions, BASE_URL };
   },
 });
 </script>
